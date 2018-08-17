@@ -1,4 +1,4 @@
-name: SSM
+name: aws-ssm
 description: Inject SSM Parameter Store values as environment variables into build step.
 author: https://github.com/unbounce
 requirements:

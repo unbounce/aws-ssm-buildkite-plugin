@@ -8,7 +8,7 @@ steps:
   - label: ":sparkles: Lint"
     plugins:
       plugin-linter#v2.0.0:
-        id: unbounce/ssm
+        id: unbounce/aws-ssm
 
   - label: ":rocket: Test"
     plugins:
