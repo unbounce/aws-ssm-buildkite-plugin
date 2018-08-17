@@ -7,8 +7,6 @@ configuration:
   properties:
     parameters:
       type: object
-      properties:
-        type: string
   required:
     - parameters
   additionalProperties: false
