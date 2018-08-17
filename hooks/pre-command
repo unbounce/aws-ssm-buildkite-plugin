@@ -6,22 +6,22 @@ set -eu -o pipefail
 # export BUILDKITE_PLUGIN_AWS_SSM_DEBUG=true to echo parameter values
 
 function set_environment_from_parameters() {
-  local prefix=BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_
+  prefix=BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_
 
   env \
     | grep "^${prefix}" \
-    | while read line; do
-      local environment_name=$(echo "$line" | cut -d '=' -f 1 | sed "s/^${prefix}//")
-      local parameter_name=$(echo "$line" | cut -d '=' -f 2-)
+    | while read -r line; do
+      environment_name=$(echo "$line" | cut -d '=' -f 1 | sed "s/^${prefix}//")
+      parameter_name=$(echo "$line" | cut -d '=' -f 2-)
 
-      local value=$(aws ssm get-parameter \
+      value=$(aws ssm get-parameter \
         --with-decryption \
         --output text \
         --query Parameter.Value \
         --name "$parameter_name")
 
       declare "${environment_name}=${value}"
-      export "$environment_name"
+      export "${environment_name?}"
 
       echo "Exported ${environment_name} as value of parameter ${parameter_name}"
 
