@@ -10,7 +10,7 @@ Inject `/my/param` as `$MY_PARAM` and `/other/param` as `$OTHER_PARAM`:
 steps:
   - command: echo "/my/param ${MY_PARAM}"
     plugins:
-      unbounce/aws-ssm:
+      unbounce/aws-ssm#v1.0.0:
         parameters:
           MY_PARAM: /my/param
           OTHER_PARAM: /other/param
