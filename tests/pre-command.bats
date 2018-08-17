@@ -7,8 +7,8 @@ load "$BATS_PATH/load.bash"
 @test "pre-command runs successfully" {
   stub aws "ssm : echo param-value"
 
-  export BUILDKITE_PLUGIN_SSM_PARAMETERS_FOO=/foo
-  export BUILDKITE_PLUGIN_SSM_DEBUG=true
+  export BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_FOO=/foo
+  export BUILDKITE_PLUGIN_AWS_SSM_DEBUG=true
 
   run "/root/projects/ssm-buildkite-plugin/hooks/pre-command"
 
@@ -24,7 +24,7 @@ load "$BATS_PATH/load.bash"
 @test "pre-command with debug off does not print param value" {
   stub aws "ssm : echo param-value"
 
-  export BUILDKITE_PLUGIN_SSM_PARAMETERS_FOO=/foo
+  export BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_FOO=/foo
 
   run "/root/projects/ssm-buildkite-plugin/hooks/pre-command"
 
