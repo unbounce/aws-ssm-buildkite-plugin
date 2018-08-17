@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+PROJECT_DIR=$(cd "${BATS_TEST_DIRNAME}/.." && pwd)
+
 load "$BATS_PATH/load.bash"
 
 # export AWS_STUB_DEBUG=/dev/tty
@@ -10,7 +12,7 @@ load "$BATS_PATH/load.bash"
   export BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_FOO=/foo
   export BUILDKITE_PLUGIN_AWS_SSM_DEBUG=true
 
-  run "/root/projects/ssm-buildkite-plugin/hooks/pre-command"
+  run "${PROJECT_DIR}/hooks/pre-command"
 
   assert_success
 
@@ -26,7 +28,7 @@ load "$BATS_PATH/load.bash"
 
   export BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_FOO=/foo
 
-  run "/root/projects/ssm-buildkite-plugin/hooks/pre-command"
+  run "${PROJECT_DIR}/hooks/pre-command"
 
   assert_success
 
