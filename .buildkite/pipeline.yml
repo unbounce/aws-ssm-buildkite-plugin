@@ -1,0 +1,16 @@
+steps:
+  - label: ":shell: Shellcheck"
+    plugins:
+      shellcheck#v1.0.1:
+        files:
+          - hooks/**
+
+  - label: ":sparkles: Lint"
+    plugins:
+      plugin-linter#v2.0.0:
+        id: unbounce/ssm
+
+  - label: ":rocket: Test"
+    plugins:
+      docker-compose#v2.5.1:
+        run: tests
