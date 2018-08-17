@@ -6,7 +6,7 @@ Inject AWS SSM parameter values as environment variables in build step.
 
 Inject `/my/param` as `$MY_PARAM` and `/other/param` as `$OTHER_PARAM`:
 
-```
+```yaml
 steps:
   - command: echo "/my/param ${MY_PARAM}"
     plugins:
