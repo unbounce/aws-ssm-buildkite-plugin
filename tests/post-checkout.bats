@@ -6,13 +6,13 @@ load "$BATS_PATH/load.bash"
 
 # export AWS_STUB_DEBUG=/dev/tty
 
-@test "pre-command runs successfully" {
+@test "post-checkout runs successfully" {
   stub aws "ssm : echo param-value"
 
   export BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_FOO=/foo
   export BUILDKITE_PLUGIN_AWS_SSM_DEBUG=true
 
-  run "${PROJECT_DIR}/hooks/pre-command"
+  run "${PROJECT_DIR}/hooks/post-checkout"
 
   assert_success
 
@@ -23,12 +23,12 @@ load "$BATS_PATH/load.bash"
 }
 
 
-@test "pre-command with debug off does not print param value" {
+@test "post-checkout with debug off does not print param value" {
   stub aws "ssm : echo param-value"
 
   export BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_FOO=/foo
 
-  run "${PROJECT_DIR}/hooks/pre-command"
+  run "${PROJECT_DIR}/hooks/post-checkout"
 
   assert_success
 
