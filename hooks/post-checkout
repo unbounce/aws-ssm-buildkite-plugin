@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -eu -o pipefail
+
+# Inject SSM parameters into environment
+# export BUILDKITE_PLUGIN_AWS_SSM_DEBUG=true to echo parameter values
+
+function set_environment_from_parameters() {
+  prefix=BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_
+
+  while read -r line; do
+      environment_name=$(echo "$line" | cut -d '=' -f 1 | sed "s/^${prefix}//")
+      parameter_name=$(echo "$line" | cut -d '=' -f 2-)
+
+      value=$(aws ssm get-parameter \
+                  --with-decryption \
+                  --output text \
+                  --query Parameter.Value \
+                  --name "$parameter_name")
+
+      export "${environment_name}=${value}"
+
+      echo "Exported ${environment_name} as value of parameter ${parameter_name}"
+
+      if [[ "${BUILDKITE_PLUGIN_AWS_SSM_DEBUG:-}" == "true" ]]; then
+          echo "Value: ${value}"
+      fi
+  done < <(env | grep "^${prefix}")
+}
+
+function main() {
+  set_environment_from_parameters
+}
+
+main

@@ -1,0 +1,12 @@
+name: aws-ssm
+description: Inject SSM Parameter Store values as environment variables into build step.
+author: https://github.com/unbounce
+requirements:
+  - aws
+configuration:
+  properties:
+    parameters:
+      type: object
+  required:
+    - parameters
+  additionalProperties: false
