@@ -11,10 +11,13 @@ steps:
   - command: echo "/my/param ${MY_PARAM}"
     plugins:
       unbounce/aws-ssm#v1.0.0:
+        region: us-west-2
         parameters:
           MY_PARAM: /my/param
           OTHER_PARAM: /other/param
 ```
+
+Region is set to `AWS_DEFAULT_REGION` by default, but can be overriden a different value to `region:`
 
 ## Testing
 
