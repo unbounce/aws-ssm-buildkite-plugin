@@ -17,7 +17,7 @@ steps:
           OTHER_PARAM: /other/param
 ```
 
-Region is set to `AWS_DEFAULT_REGION` by default, but can be overriden a different value to `region:`
+Region is set to `AWS_DEFAULT_REGION` by default, but can be overriden to a different value to `region:`
 
 ## Testing
 
