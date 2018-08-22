@@ -1,6 +1,8 @@
 version: '2'
 services:
   tests:
-    image: buildkite/plugin-tester:latest
+    image: buildkite/plugin-tester:latest@sha256:708ad19f7b52c43b8958a49d316271ca8fe988dd52d66971af6c0b8678b6627b
+    environment:
+      - AWS_DEFAULT_REGION=us-west-2
     volumes:
       - ".:/plugin"
