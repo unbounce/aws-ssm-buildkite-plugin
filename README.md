@@ -10,11 +10,11 @@ Inject `/my/param` as `$MY_PARAM` and `/other/param` as `$OTHER_PARAM`:
 steps:
   - command: echo "/my/param ${MY_PARAM}"
     plugins:
-      unbounce/aws-ssm#v1.0.0:
-        region: us-west-2
-        parameters:
-          MY_PARAM: /my/param
-          OTHER_PARAM: /other/param
+      - unbounce/aws-ssm#v1.0.0:
+          region: us-west-2
+          parameters:
+            MY_PARAM: /my/param
+            OTHER_PARAM: /other/param
 ```
 
 Region is set to `AWS_DEFAULT_REGION` by default, but can be overriden to a different value to `region:`
